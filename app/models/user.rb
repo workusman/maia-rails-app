@@ -3,4 +3,6 @@ class User < ApplicationRecord
   has_many :clients, through: :client_users
 
   validates :email, presence: true
+  validates_uniqueness_of :email
+  
 end

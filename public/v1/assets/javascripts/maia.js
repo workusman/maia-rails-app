@@ -41,7 +41,7 @@ function addUserToDataBase(){
       document.getElementById("popup").style.display = "none";
     }
   }
-  xhr.open('POST', "https://my-maia.herokuapp.com//api/v1/users" );
+  xhr.open('POST', "https://maia-rails-app.herokuapp.com/api/v1/users" );
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   xhr.send(`domain=${window.location.host}&email=${email}`);
 }

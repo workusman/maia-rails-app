@@ -1,12 +1,13 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < Api::V1::BaseController
   before_action :set_client, only: %i[create]
   before_action :set_user, only: %i[create]
-  
+
   def create
     begin
-      @client.users.find_or_create_by email: @user.email
+      @client.client_users.find_or_create_by user_id: @user.id
       render json: {status: 200}
     rescue Exception => e
+      puts e.inspect
       render_error_message("User not created", 500)
     end
   end
@@ -18,6 +19,6 @@ class Api::V1::UsersController < ApplicationController
     end
 
     def set_user
-      @user = User.find_or_initialize_by(email: params[:email])
+      @user = User.find_or_create_by(email: params[:email])
     end
 end
