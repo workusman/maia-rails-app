@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: maia_app_development
+
+
+test:
+  <<: *default
+  database: maia_app_test
+
+production:
+  <<: *default
+  database: maia_app_production
+  username: maia_app
+  password: <%= ENV['MAIA_APP_DATABASE_PASSWORD'] %>
